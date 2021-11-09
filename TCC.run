@@ -1,0 +1,9 @@
+reset;
+model TCC.mod; #Seleção do modelo
+data Instância(1).dat; #Seleção do conjunto de dados
+option solver gurobi; #Seleção do solver
+option gurobi_options 'timelim = 10800'; #Parâmetro de tempo limite do solver em segundos
+let starting_time:= time(); #obtenção do tempo
+solve;
+printf " Tempo : %18.4f\n", time() - starting_time;
+display Z, time() - starting_time, X  > ("Resultado1.out"); #Arquivo de saída dos resultados com as variáveis Z,X e o tempo de execução
